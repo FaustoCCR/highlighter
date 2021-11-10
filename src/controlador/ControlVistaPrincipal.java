@@ -9,6 +9,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
@@ -43,7 +44,35 @@ public class ControlVistaPrincipal {
     public void functionality() {
 
         vista.getBt_upload().addActionListener(l -> searchfile());
-        vista.getBt_search().addActionListener(l -> highlight(vista.getJtextArea1(), vista.getTxt_word().getText()));
+        vista.getTxt_word().addActionListener(l -> highlight(vista.getJtextArea1(), vista.getTxt_word().getText()));
+        vista.getBt_search().addActionListener((e) -> {
+
+            highlight(vista.getJtextArea1(), vista.getTxt_word().getText());
+
+            /*if we want that we our app found out the word without its is into of other 
+                we can put...
+                highlight(vista.getJtextArea1(), ""+vista.getTxt_word().getText()+"");
+             */
+        });
+
+    }
+
+    private boolean checkFields() {
+
+        boolean answer = true;
+
+        if (vista.getTxt_word().getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(vista, "Enter a word");
+            answer = false;
+        }
+        if (vista.getJtextArea1().getText().isEmpty()) {
+
+            JOptionPane.showMessageDialog(vista, "Insert a text or upload a text file");
+            answer = false;
+        }
+
+        return answer;
 
     }
 
@@ -61,7 +90,7 @@ public class ControlVistaPrincipal {
         if (seleccion == JFileChooser.APPROVE_OPTION) {
 
             try {
-                FileReader reader = new FileReader(file.getSelectedFile().getPath()); // this read the file that we chose
+                FileReader reader = new FileReader(file.getSelectedFile().getPath()); //this read the file that we chose
                 BufferedReader br = new BufferedReader(reader);//this save the entry of a reader, is used to improve efficiency
 
                 String line = "";
@@ -91,36 +120,47 @@ public class ControlVistaPrincipal {
 
     private void highlight(JTextComponent textComp, String pattern) {
 
-        removeHighlights(textComp);
-        
-        Highlighter hg = textComp.getHighlighter();
-        try {
-            String text = textComp.getText(0, textComp.getText().length());
+        if (checkFields()) {
 
-            int pos = 0;
-            while ((pos = text.toUpperCase().indexOf(pattern.toUpperCase(), pos)) >= 0) {
+            removeHighlights(textComp);
 
-                hg.addHighlight(pos, pos + pattern.length(), myHighlightPainter);
-                pos += pattern.length();
+            Highlighter hg = textComp.getHighlighter();//this get the object that highlight
+            try {
+                String text = textComp.getText(0, textComp.getText().length());//get the text inside the component --> JTextArea
 
+                int pos = 0;
+
+                while ((pos = text.toUpperCase().indexOf(pattern.toUpperCase(), pos)) >= 0) {
+
+                    /* the loop while set as value, the index of the searched word(the word, from index) into a variable*/
+                    hg.addHighlight(pos, pos + pattern.length(), myHighlightPainter);
+
+                    /*this highlight the word from its beginning to last character
+                pos --> the beginning of the word 
+                pos + pattern.lenght --> this add the position and its length()--> to the last position of the string*/
+                    pos += pattern.length();/*--> we save the final position of the string, for later do the search from that position and not at the beginning*/
+
+                }
+
+            } catch (BadLocationException ex) {
+                Logger.getLogger(ControlVistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-        } catch (BadLocationException ex) {
-            Logger.getLogger(ControlVistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
         }
 
     }
 
     private void removeHighlights(JTextComponent textComp) {
 
-        Highlighter hg = textComp.getHighlighter();
-        Highlighter.Highlight[] hgs = hg.getHighlights();
+        Highlighter hg = textComp.getHighlighter();//we get the object that highlight
+        Highlighter.Highlight[] hgs = hg.getHighlights();//returns within a vector the words that were highlighted
 
         for (int i = 0; i < hgs.length; i++) {
-
+            //we go through the vector
             if (hgs[i].getPainter() instanceof DefaultHighlighter.HighlightPainter) {
 
-                hg.removeHighlight(hgs[i]);
+                //we analize if the painter belongs to an instance of the class DefaultHighlighter.HighlightPainter
+                hg.removeHighlight(hgs[i]);//we remove the highlighting of the words that were previously highlighted
 
             }
         }
