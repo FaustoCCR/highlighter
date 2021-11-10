@@ -39,6 +39,7 @@ public class ControlVistaPrincipal {
     public void functionality() {
 
         vista.getBt_upload().addActionListener(l -> searchfile());
+        vista.getBt_search().addActionListener(l-> Highlight(vista.getJtextArea1(), vista.getTxt_word().getText()));
 
     }
 
@@ -84,6 +85,29 @@ public class ControlVistaPrincipal {
 
     }
 
+    private void Highlight(JTextComponent textComp, String pattern) {
+        /*here we declare a class that incorporate the interface Highlighter 
+        and a method that allow paint or underline*/
 
+        Highlighter.HighlightPainter myHighlightPainter = new DefaultHighlighter.DefaultHighlightPainter(Color.red);
+
+        Highlighter hg = textComp.getHighlighter();
+        try {
+            String text = textComp.getText(0, textComp.getText().length());
+
+            int pos = 0;
+            while ((pos = text.toUpperCase().indexOf(pattern.toUpperCase(), pos)) >= 0) {
+
+                hg.addHighlight(pos, pos + pattern.length(), myHighlightPainter);
+                pos += pattern.length();
+
+            }
+
+        } catch (BadLocationException ex) {
+            Logger.getLogger(ControlVistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+    }
+    
 
 }
