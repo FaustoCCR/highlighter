@@ -1,6 +1,8 @@
 package controlador;
 
 import java.awt.Color;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -38,6 +40,7 @@ public class ControlVistaPrincipal {
         vista.setTitle("Highlight word");
         vista.setResizable(false);
         vista.setLocationRelativeTo(null);
+        vista.getBt_erase().setVisible(false);
 
     }
 
@@ -45,6 +48,18 @@ public class ControlVistaPrincipal {
 
         vista.getBt_upload().addActionListener(l -> searchfile());
         vista.getTxt_word().addActionListener(l -> highlight(vista.getJtextArea1(), vista.getTxt_word().getText()));
+        vista.getTxt_word().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                if (!vista.getTxt_word().getText().isEmpty()) {
+                    vista.getBt_erase().setVisible(true);
+                }else{
+                    vista.getBt_erase().setVisible(false);
+                }
+            }
+            
+            
+        });
         vista.getBt_search().addActionListener((e) -> {
 
             highlight(vista.getJtextArea1(), vista.getTxt_word().getText());
@@ -54,6 +69,9 @@ public class ControlVistaPrincipal {
                 highlight(vista.getJtextArea1(), ""+vista.getTxt_word().getText()+"");
              */
         });
+        
+        vista.getBt_cleanArea().addActionListener(l->cleanText(vista.getJtextArea1()));
+        vista.getBt_erase().addActionListener(l->cleanText(vista.getTxt_word()));
 
     }
 
@@ -89,6 +107,7 @@ public class ControlVistaPrincipal {
 
         if (seleccion == JFileChooser.APPROVE_OPTION) {
 
+            cleanText(vista.getJtextArea1());
             try {
                 FileReader reader = new FileReader(file.getSelectedFile().getPath()); //this read the file that we chose
                 BufferedReader br = new BufferedReader(reader);//this save the entry of a reader, is used to improve efficiency
@@ -164,6 +183,11 @@ public class ControlVistaPrincipal {
 
             }
         }
+    }
+    
+    private void cleanText(JTextComponent comp){
+        
+       comp.setText("");
     }
 
 }
