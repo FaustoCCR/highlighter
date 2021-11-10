@@ -21,6 +21,10 @@ public class ControlVistaPrincipal {
 
     private VistaPrincipal vista;
 
+    /*here we declare a class that incorporate the interface Highlighter 
+        and a method that allow paint or underline*/
+    Highlighter.HighlightPainter myHighlightPainter = new DefaultHighlighter.DefaultHighlightPainter(Color.red);
+
     public ControlVistaPrincipal(VistaPrincipal vista) {
         this.vista = vista;
 
@@ -39,7 +43,7 @@ public class ControlVistaPrincipal {
     public void functionality() {
 
         vista.getBt_upload().addActionListener(l -> searchfile());
-        vista.getBt_search().addActionListener(l-> Highlight(vista.getJtextArea1(), vista.getTxt_word().getText()));
+        vista.getBt_search().addActionListener(l -> highlight(vista.getJtextArea1(), vista.getTxt_word().getText()));
 
     }
 
@@ -85,12 +89,10 @@ public class ControlVistaPrincipal {
 
     }
 
-    private void Highlight(JTextComponent textComp, String pattern) {
-        /*here we declare a class that incorporate the interface Highlighter 
-        and a method that allow paint or underline*/
+    private void highlight(JTextComponent textComp, String pattern) {
 
-        Highlighter.HighlightPainter myHighlightPainter = new DefaultHighlighter.DefaultHighlightPainter(Color.red);
-
+        removeHighlights(textComp);
+        
         Highlighter hg = textComp.getHighlighter();
         try {
             String text = textComp.getText(0, textComp.getText().length());
@@ -108,6 +110,20 @@ public class ControlVistaPrincipal {
         }
 
     }
-    
+
+    private void removeHighlights(JTextComponent textComp) {
+
+        Highlighter hg = textComp.getHighlighter();
+        Highlighter.Highlight[] hgs = hg.getHighlights();
+
+        for (int i = 0; i < hgs.length; i++) {
+
+            if (hgs[i].getPainter() instanceof DefaultHighlighter.HighlightPainter) {
+
+                hg.removeHighlight(hgs[i]);
+
+            }
+        }
+    }
 
 }
