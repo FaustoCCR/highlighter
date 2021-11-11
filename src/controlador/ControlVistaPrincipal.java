@@ -27,7 +27,7 @@ public class ControlVistaPrincipal {
 
     /*here we declare a class that incorporate the interface Highlighter 
         and a method that allow paint or underline*/
-    Highlighter.HighlightPainter myHighlightPainter = new DefaultHighlighter.DefaultHighlightPainter(Color.red);
+    Highlighter.HighlightPainter myHighlightPainter = new DefaultHighlighter.DefaultHighlightPainter(Color.green);
 
     public ControlVistaPrincipal(VistaPrincipal vista) {
         this.vista = vista;
@@ -79,7 +79,7 @@ public class ControlVistaPrincipal {
         
         vista.getBt_cleanArea().addActionListener((e) -> {
             cleanText(vista.getJtextArea1());
-            hide_buttons(vista.getBt_cleanArea(), vista.getTxt_word());
+            hide_buttons(vista.getBt_cleanArea(), vista.getJtextArea1());
         });
         vista.getBt_erase().addActionListener((e) -> {
             cleanText(vista.getTxt_word());
@@ -172,6 +172,7 @@ public class ControlVistaPrincipal {
                 String text = textComp.getText(0, textComp.getText().length());//get the text inside the component --> JTextArea
 
                 int pos = 0;
+                int con = 0; //this count the number of coincidences at search that word into the seeker
 
                 while ((pos = text.toUpperCase().indexOf(pattern.toUpperCase(), pos)) >= 0) {
 
@@ -182,8 +183,12 @@ public class ControlVistaPrincipal {
                 pos --> the beginning of the word 
                 pos + pattern.lenght --> this add the position and its length()--> to the last position of the string*/
                     pos += pattern.length();/*--> we save the final position of the string, for later do the search from that position and not at the beginning*/
+                    con++;
 
                 }
+
+                vista.getJlabelresult().setText(String.valueOf(con));//--we put in this component the result of our count
+                
 
             } catch (BadLocationException ex) {
                 Logger.getLogger(ControlVistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -210,7 +215,7 @@ public class ControlVistaPrincipal {
     }
     
     private void cleanText(JTextComponent comp){
-        
+
        comp.setText("");
     }
 
