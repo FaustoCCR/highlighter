@@ -9,6 +9,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JButton;
 import javax.swing.JFileChooser;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -41,6 +42,7 @@ public class ControlVistaPrincipal {
         vista.setResizable(false);
         vista.setLocationRelativeTo(null);
         vista.getBt_erase().setVisible(false);
+        vista.getBt_cleanArea().setVisible(false);
 
     }
 
@@ -51,15 +53,20 @@ public class ControlVistaPrincipal {
         vista.getTxt_word().addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
-                if (!vista.getTxt_word().getText().isEmpty()) {
-                    vista.getBt_erase().setVisible(true);
-                }else{
-                    vista.getBt_erase().setVisible(false);
-                }
+                hide_buttons(vista.getBt_erase(), vista.getTxt_word());
             }
             
             
         });
+        
+       vista.getJtextArea1().addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyReleased(KeyEvent e) {
+                hide_buttons(vista.getBt_cleanArea(), vista.getJtextArea1());
+            }
+           
+       });
+        
         vista.getBt_search().addActionListener((e) -> {
 
             highlight(vista.getJtextArea1(), vista.getTxt_word().getText());
@@ -70,9 +77,24 @@ public class ControlVistaPrincipal {
              */
         });
         
-        vista.getBt_cleanArea().addActionListener(l->cleanText(vista.getJtextArea1()));
-        vista.getBt_erase().addActionListener(l->cleanText(vista.getTxt_word()));
+        vista.getBt_cleanArea().addActionListener((e) -> {
+            cleanText(vista.getJtextArea1());
+            hide_buttons(vista.getBt_cleanArea(), vista.getTxt_word());
+        });
+        vista.getBt_erase().addActionListener((e) -> {
+            cleanText(vista.getTxt_word());
+            hide_buttons(vista.getBt_erase(), vista.getTxt_word());
+        });
 
+    }
+    
+    private void hide_buttons(JButton button,JTextComponent field){
+        
+        if (!field.getText().isEmpty()) {
+            button.setVisible(true);
+        }else{
+            button.setVisible(false);
+        }
     }
 
     private boolean checkFields() {
@@ -124,6 +146,8 @@ public class ControlVistaPrincipal {
                             vista.getJtextArea1().append(line + "\n");
 
                         }
+                        
+                        hide_buttons(vista.getBt_cleanArea(), vista.getJtextArea1());
 
                     } catch (IOException ex) {
                         Logger.getLogger(ControlVistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
