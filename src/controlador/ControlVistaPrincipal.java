@@ -55,18 +55,17 @@ public class ControlVistaPrincipal {
             public void keyReleased(KeyEvent e) {
                 hide_buttons(vista.getBt_erase(), vista.getTxt_word());
             }
-            
-            
+
         });
-        
-       vista.getJtextArea1().addKeyListener(new KeyAdapter() {
+
+        vista.getJtextArea1().addKeyListener(new KeyAdapter() {
             @Override
             public void keyReleased(KeyEvent e) {
                 hide_buttons(vista.getBt_cleanArea(), vista.getJtextArea1());
             }
-           
-       });
-        
+
+        });
+
         vista.getBt_search().addActionListener((e) -> {
 
             highlight(vista.getJtextArea1(), vista.getTxt_word().getText());
@@ -76,7 +75,7 @@ public class ControlVistaPrincipal {
                 highlight(vista.getJtextArea1(), ""+vista.getTxt_word().getText()+"");
              */
         });
-        
+
         vista.getBt_cleanArea().addActionListener((e) -> {
             cleanText(vista.getJtextArea1());
             hide_buttons(vista.getBt_cleanArea(), vista.getJtextArea1());
@@ -86,13 +85,15 @@ public class ControlVistaPrincipal {
             hide_buttons(vista.getBt_erase(), vista.getTxt_word());
         });
 
+        vista.getBt_share().addActionListener(l -> showJDialog());
+
     }
-    
-    private void hide_buttons(JButton button,JTextComponent field){
-        
+
+    private void hide_buttons(JButton button, JTextComponent field) {
+
         if (!field.getText().isEmpty()) {
             button.setVisible(true);
-        }else{
+        } else {
             button.setVisible(false);
         }
     }
@@ -146,7 +147,7 @@ public class ControlVistaPrincipal {
                             vista.getJtextArea1().append(line + "\n");
 
                         }
-                        
+
                         hide_buttons(vista.getBt_cleanArea(), vista.getJtextArea1());
 
                     } catch (IOException ex) {
@@ -188,7 +189,6 @@ public class ControlVistaPrincipal {
                 }
 
                 vista.getJlabelresult().setText(String.valueOf(con));//--we put in this component the result of our count
-                
 
             } catch (BadLocationException ex) {
                 Logger.getLogger(ControlVistaPrincipal.class.getName()).log(Level.SEVERE, null, ex);
@@ -213,10 +213,21 @@ public class ControlVistaPrincipal {
             }
         }
     }
-    
-    private void cleanText(JTextComponent comp){
 
-       comp.setText("");
+    private void cleanText(JTextComponent comp) {
+
+        comp.setText("");
+    }
+
+    /*-----------------------Code to implement a message email --------------------------- */
+    private void showJDialog() {
+
+        vista.getjDialogMail().setSize(447, 140);
+        vista.getjDialogMail().setVisible(true);
+        vista.getjDialogMail().setTitle("Email Form");
+        vista.getjDialogMail().setResizable(false);
+        vista.getjDialogMail().setLocationRelativeTo(vista);
+
     }
 
 }
