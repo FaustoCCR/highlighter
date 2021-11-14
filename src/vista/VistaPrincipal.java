@@ -3,6 +3,7 @@ package vista;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -17,10 +18,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jDialogMail = new javax.swing.JDialog();
-        jLabel3 = new javax.swing.JLabel();
-        txt_mail = new javax.swing.JTextField();
-        bt_send = new javax.swing.JButton();
         txt_word = new javax.swing.JTextField();
         bt_search = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -33,39 +30,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jlabelresult = new javax.swing.JLabel();
         bt_share = new javax.swing.JButton();
-
-        jLabel3.setFont(new java.awt.Font("Tw Cen MT", 1, 15)); // NOI18N
-        jLabel3.setText("Mail:");
-
-        txt_mail.setFont(new java.awt.Font("Tw Cen MT", 0, 15)); // NOI18N
-
-        bt_send.setFont(new java.awt.Font("Tw Cen MT", 1, 15)); // NOI18N
-        bt_send.setText("Send");
-        bt_send.setFocusPainted(false);
-
-        javax.swing.GroupLayout jDialogMailLayout = new javax.swing.GroupLayout(jDialogMail.getContentPane());
-        jDialogMail.getContentPane().setLayout(jDialogMailLayout);
-        jDialogMailLayout.setHorizontalGroup(
-            jDialogMailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialogMailLayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(txt_mail, javax.swing.GroupLayout.PREFERRED_SIZE, 263, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(bt_send)
-                .addContainerGap(37, Short.MAX_VALUE))
-        );
-        jDialogMailLayout.setVerticalGroup(
-            jDialogMailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jDialogMailLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
-                .addGroup(jDialogMailLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txt_mail, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bt_send))
-                .addGap(79, 79, 79))
-        );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -255,30 +219,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.bt_share = bt_share;
     }
 
-    public JButton getBt_send() {
-        return bt_send;
-    }
-
-    public void setBt_send(JButton bt_send) {
-        this.bt_send = bt_send;
-    }
-
-    public JDialog getjDialogMail() {
-        return jDialogMail;
-    }
-
-    public void setjDialogMail(JDialog jDialogMail) {
-        this.jDialogMail = jDialogMail;
-    }
-
-    public JTextField getTxt_mail() {
-        return txt_mail;
-    }
-
-    public void setTxt_mail(JTextField txt_mail) {
-        this.txt_mail = txt_mail;
-    }
-    
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -316,18 +256,14 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton bt_cleanArea;
     private javax.swing.JButton bt_erase;
     private javax.swing.JButton bt_search;
-    private javax.swing.JButton bt_send;
     private javax.swing.JButton bt_share;
     private javax.swing.JButton bt_upload;
-    private javax.swing.JDialog jDialogMail;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlabelresult;
     private javax.swing.JTextArea jtextArea1;
-    private javax.swing.JTextField txt_mail;
     private javax.swing.JTextField txt_word;
     // End of variables declaration//GEN-END:variables
 }

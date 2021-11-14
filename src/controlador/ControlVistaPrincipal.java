@@ -85,8 +85,6 @@ public class ControlVistaPrincipal {
             hide_buttons(vista.getBt_erase(), vista.getTxt_word());
         });
 
-        vista.getBt_share().addActionListener(l -> showJDialog());
-
     }
 
     private void hide_buttons(JButton button, JTextComponent field) {
@@ -217,17 +215,6 @@ public class ControlVistaPrincipal {
     private void cleanText(JTextComponent comp) {
 
         comp.setText("");
-    }
-
-    /*-----------------------Code to implement a message email --------------------------- */
-    private void showJDialog() {
-
-        vista.getjDialogMail().setSize(447, 140);
-        vista.getjDialogMail().setVisible(true);
-        vista.getjDialogMail().setTitle("Email Form");
-        vista.getjDialogMail().setResizable(false);
-        vista.getjDialogMail().setLocationRelativeTo(vista);
-
     }
 
 }
