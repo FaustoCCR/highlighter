@@ -62,6 +62,10 @@ public class ControlVistaPrincipal {
             @Override
             public void keyReleased(KeyEvent e) {
                 hide_buttons(vista.getBt_cleanArea(), vista.getJtextArea1());
+                if (vista.getJtextArea1().getText().isEmpty()) {
+                    cleanMatches();
+                }
+
             }
 
         });
@@ -79,6 +83,7 @@ public class ControlVistaPrincipal {
         vista.getBt_cleanArea().addActionListener((e) -> {
             cleanText(vista.getJtextArea1());
             hide_buttons(vista.getBt_cleanArea(), vista.getJtextArea1());
+            cleanMatches();
         });
         vista.getBt_erase().addActionListener((e) -> {
             cleanText(vista.getTxt_word());
@@ -129,6 +134,7 @@ public class ControlVistaPrincipal {
         if (seleccion == JFileChooser.APPROVE_OPTION) {
 
             cleanText(vista.getJtextArea1());
+            cleanMatches();
             try {
                 FileReader reader = new FileReader(file.getSelectedFile().getPath()); //this read the file that we chose
                 BufferedReader br = new BufferedReader(reader);//this save the entry of a reader, is used to improve efficiency
@@ -215,6 +221,11 @@ public class ControlVistaPrincipal {
     private void cleanText(JTextComponent comp) {
 
         comp.setText("");
+    }
+
+    private void cleanMatches() {
+
+        vista.getJlabelresult().setText("");
     }
 
 }

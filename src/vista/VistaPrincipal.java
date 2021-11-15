@@ -27,14 +27,13 @@ public class VistaPrincipal extends javax.swing.JFrame {
         bt_erase = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jlabelresult = new javax.swing.JLabel();
-        bt_share = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         txt_word.setFont(new java.awt.Font("Tw Cen MT", 0, 15)); // NOI18N
 
         bt_search.setFont(new java.awt.Font("Tw Cen MT", 1, 15)); // NOI18N
-        bt_search.setText("Search");
+        bt_search.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/highlighter.png"))); // NOI18N
         bt_search.setFocusPainted(false);
 
         jtextArea1.setColumns(20);
@@ -43,6 +42,7 @@ public class VistaPrincipal extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jtextArea1);
 
         bt_upload.setFont(new java.awt.Font("Tw Cen MT", 1, 15)); // NOI18N
+        bt_upload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/documento.png"))); // NOI18N
         bt_upload.setText("Upload file");
         bt_upload.setFocusPainted(false);
 
@@ -70,21 +70,18 @@ public class VistaPrincipal extends javax.swing.JFrame {
         );
 
         bt_cleanArea.setFont(new java.awt.Font("Tw Cen MT", 1, 15)); // NOI18N
+        bt_cleanArea.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/garbage.png"))); // NOI18N
         bt_cleanArea.setText("Clean Area");
         bt_cleanArea.setFocusPainted(false);
 
         bt_erase.setFont(new java.awt.Font("Tw Cen MT", 1, 15)); // NOI18N
-        bt_erase.setText("X");
+        bt_erase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/vista/img/delete.png"))); // NOI18N
         bt_erase.setFocusPainted(false);
 
         jLabel2.setFont(new java.awt.Font("Tw Cen MT", 1, 15)); // NOI18N
         jLabel2.setText("Total matches :");
 
         jlabelresult.setFont(new java.awt.Font("Tw Cen MT", 0, 15)); // NOI18N
-
-        bt_share.setFont(new java.awt.Font("Tw Cen MT", 1, 15)); // NOI18N
-        bt_share.setText("Share +");
-        bt_share.setFocusPainted(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -97,9 +94,9 @@ public class VistaPrincipal extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(txt_word, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bt_erase)
+                        .addComponent(bt_erase, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bt_search))
+                        .addComponent(bt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 501, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -108,38 +105,35 @@ public class VistaPrincipal extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jlabelresult, javax.swing.GroupLayout.PREFERRED_SIZE, 180, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(bt_share, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(bt_upload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(bt_cleanArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(bt_upload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(bt_cleanArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 29, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 27, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txt_word, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(bt_search)
-                    .addComponent(bt_erase))
+                    .addComponent(bt_search, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(bt_erase, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(bt_upload)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(bt_cleanArea)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(46, 46, 46)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 229, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jlabelresult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(bt_upload)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(bt_cleanArea)
-                        .addGap(99, 99, 99)
-                        .addComponent(bt_share)))
-                .addContainerGap(25, Short.MAX_VALUE))
+                            .addComponent(jlabelresult, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap(24, Short.MAX_VALUE))))
         );
 
         pack();
@@ -209,14 +203,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
         this.jlabelresult = jlabelresult;
     }
 
-    public JButton getBt_share() {
-        return bt_share;
-    }
-
-    public void setBt_share(JButton bt_share) {
-        this.bt_share = bt_share;
-    }
-
     
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -254,7 +240,6 @@ public class VistaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton bt_cleanArea;
     private javax.swing.JButton bt_erase;
     private javax.swing.JButton bt_search;
-    private javax.swing.JButton bt_share;
     private javax.swing.JButton bt_upload;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
